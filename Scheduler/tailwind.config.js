@@ -38,7 +38,10 @@ export default {
       },
       leading : {
         '60px': "60px"
-      }
+      },
+      fontFamily: {
+        'brush-script': ['"Brush Script MT"', 'cursive'],
+      },
     },
   },
   plugins: [],

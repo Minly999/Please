@@ -44,7 +44,7 @@ const Counter = ({ data }: CounterProps) => {
     try {
       await axios.patch(`http://localhost:3000/apiv3/counterData/${counterData._id}`, counterData);
       console.log('Update successful');
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error updating counter data:', error.response || error.message);
     }
   }
@@ -53,6 +53,10 @@ const Counter = ({ data }: CounterProps) => {
     databaseUpdateCounter()
     console.log(counterData)
   }, [counterData])
+
+  useEffect(() => {
+    setCounterData(data);
+  }, [data]);
 
   return (
     <main>
