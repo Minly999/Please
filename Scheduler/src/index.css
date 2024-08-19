@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+/* .counterButton {
+    @apply text-md font-bold bg-primary-blue w-8 h-8 rounded-full text-center mt-1 leading-8 text-primary-white hover:bg-color-primary-blueHover
+} */

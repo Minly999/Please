@@ -1,0 +1,101 @@
+
+/* UTILS */
+
+.w-4\/7 {
+    width: 57.1428%;
+}
+
+.w-2\/5 {
+    width: 40%;
+}
+
+.w-1\/7 {
+    width: 14.2857%;
+}
+
+/* COUNTER */
+
+.counter {
+    width: 11rem;
+    height: 11rem;
+    margin: 1rem;
+    margin-top: 0;
+}
+
+.counter_label {
+    font-weight: 700;
+    font-size: x-large;
+    display: block;
+    text-align: center;
+    margin: 1rem;
+    margin-bottom: 0;
+    margin-top: 0.25rem;
+}
+
+.counter_btn {
+    font-weight: 700;
+    background-color: #3a5977;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 100%;
+    text-align: center;
+    line-height: 2.5rem;
+    color: white;
+    transition: all ease-in-out 0.2s;
+    cursor: pointer;
+}
+
+.counter_btn:hover {
+    background-color: #212E3B;
+}
+
+
+.counter_btn.top {
+    margin-bottom: 0.25rem;
+}
+
+.counter_btn.bottom {
+    margin-top: 0.25rem;
+}
+
+
+/* HEADER */
+
+.home_img_container {
+    position: relative;
+}
+
+.home_link {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+}
+
+.nav_link:hover {
+    color: rgb(181, 190, 197);
+}
+
+.nav_link_selected {
+    padding: 1rem;
+    background-color: #b1db34;
+    color: #212E3B;
+    border-radius: 0.75rem;
+}
+
+.nav_link_selected:hover {
+    background-color: #83a226;
+}
+
+/* DAILY LIST */
+
+.table_header {
+    background-color: #AB65F8;
+    padding: 0.25rem;
+}
+
+.table_header.week {
+    background-color: #5ae079;
+}
+
