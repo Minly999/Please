@@ -8,6 +8,7 @@ import DeleteIcon from "../../../public/svgs/Delete.svg"
 import { CounterResetPopUp } from "./PopUps/CounterResetPopUp"
 import { CounterEditPopUp } from "./PopUps/CounterEditPopUp"
 import { CounterDeletePopUp } from "./PopUps/CounterDeletePopUp"
+import { CounterAddNew } from "./PopUps/CounterAddNew"
 
 export const Counters = () => {
 
@@ -20,6 +21,8 @@ export const Counters = () => {
   const [showEdit, setShowEdit] = useState<boolean>(false)
 
   const [showDelete, setShowDelete] = useState<boolean>(false)
+
+  const [showAdd, setShowAdd] = useState<boolean>(false)
 
   const [popUpCounterData, setPopUpCounterData] = useState<counterData>({
     _id: "id",
@@ -42,7 +45,7 @@ export const Counters = () => {
   return (
     <div>
       <div className="w-full font-brush-script bg-green-400 text-black text-xl font-bold p-1">Counters</div>
-      <div className="flex justify-evenly">
+      <div className="flex justify-evenly items-center">
         {counters.map((counter, counterIndex) => (
           <div className="flex flex-col" key={counterIndex}>
             <Counter data={counter} />
@@ -62,11 +65,15 @@ export const Counters = () => {
             </div>
           </div>
         ))}
+        <button onClick={() => {
+          setShowAdd(true)
+        }} className="w-[160px] h-[60px] bg-primary-violet rounded-2xl text-2xl font-semibold">Add new</button>
       </div>
 
       <CounterResetPopUp show={showReset} setShow={setShowReset} data={popUpCounterData} setRerender={setRerender}/>
       <CounterEditPopUp show={showEdit} setShow={setShowEdit} data={popUpCounterData} setRerender={setRerender}/>
       <CounterDeletePopUp show={showDelete} setShow={setShowDelete} data={popUpCounterData} setRerender={setRerender}/>
+      <CounterAddNew show={showAdd} setShow={setShowAdd} setRerender={setRerender} />
     </div>
   )
 }

@@ -1,34 +1,34 @@
 import React, { useEffect, useState } from "react";
 import { counterData } from "../../constants, type and data/types";
 import axios from "axios";
+import { generateObjectId } from "../../globalFunctions/generateObjectId";
+import { getDatesOfWeek } from "../../globalFunctions/getDatesOfWeek";
 
-type EditProps = {
+type AddNewProps = {
   show: boolean;
   setShow: React.Dispatch<React.SetStateAction<boolean>>;
-  data: counterData;
   setRerender: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export const CounterEditPopUp = ({ show, setShow, data, setRerender }: EditProps) => {
+export const CounterAddNew = ({ show, setShow, setRerender }: AddNewProps) => {
   document.body.style.overflow = show ? "hidden" : "auto";
 
-  const [nameInput, setNameInput] = useState<string>(data.name)
+  const [nameInput, setNameInput] = useState<string>("")
 
-  const [countInput, setCountInput] = useState<number>(data.count)
+  const [countInput, setCountInput] = useState<number>(0)
 
-  const defaultName = data.name;
-
-  const defaultCount = data.count;
-
-  useEffect(() => {
-    setNameInput(data.name);
-    setCountInput(data.count)
-  }, [data])
-
-  const handleCounterUpdate = async() => {
-    await axios.patch(`http://localhost:3000/apiv3/counterData/${data._id}`, {name: nameInput, count: countInput})
-    setRerender(p => !p)
+  const handleCounterCreate = async() => {
+    const weekIndex = new Date().getDay()
+    const counter = {
+        id: generateObjectId(),
+        name: nameInput,
+        count: countInput,
+        createdData: getDatesOfWeek()[weekIndex - 1],
+        __v: 0,
+    }
+    await axios.post("http://localhost:3000/apiv3/counterData", counter)
     setShow(false)
+    setRerender(p => !p)
   }
 
   return (
@@ -43,7 +43,7 @@ export const CounterEditPopUp = ({ show, setShow, data, setRerender }: EditProps
             onClick={() => setShow(false)}
           ></div>
           <div className="w-2/5 h-[35vh] bg-primary-blue z-40 flex flex-col items-center rounded-lg">
-            <div className="mt-[40px] text-xl text-white font-medium">Editing "{data.name}"</div>
+            <div className="mt-[40px] text-xl text-white font-medium">Adding new counter</div>
             <div className="mt-[40px] flex">
               <label htmlFor="name" className="mr-[10px] text-white font-medium text-xl">Name: </label>
               <input className="px-1 text-xl" id="name" type="text" value={nameInput} onChange={(e) => {setNameInput(e.target.value)}} />
@@ -60,10 +60,10 @@ export const CounterEditPopUp = ({ show, setShow, data, setRerender }: EditProps
               }}/>
             </div>
             <div className="mt-[40px] flex justify-between w-1/3">
-              <button onClick={handleCounterUpdate} className="bg-green-500 p-3 rounded-xl font-bold text-xl">Apply</button>
+              <button onClick={handleCounterCreate} className="bg-green-500 p-3 rounded-xl font-bold text-xl">Add</button>
               <button onClick={() => {
-                setNameInput(defaultName);
-                setCountInput(defaultCount);
+                setNameInput("");
+                setCountInput(0);
                 setShow(false)
               }} className="bg-red-600 p-3 rounded-xl font-bold text-xl">Discard</button>
             </div>
